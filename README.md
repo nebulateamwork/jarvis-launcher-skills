@@ -16,6 +16,8 @@ You need `jarvis-launcher` on your PC and its MCP server registered in the app: 
 
 ## Contents
 
-| Plugin | Skills |
-|---|---|
-| `jarvis-launcher` | `jarvis-launcher-scenario-start` 1.1.1: Start a Jarvis scenario |
+The plugin **jarvis-launcher** is the repository itself (`.claude-plugin/plugin.json`); its skills are in `skills/`:
+
+| Skill | Version | What it does |
+|---|---|---|
+| `jarvis-launcher-scenario-start` | 1.1.1 | Start a Jarvis scenario |
