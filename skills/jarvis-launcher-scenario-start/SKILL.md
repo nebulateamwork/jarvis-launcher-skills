@@ -13,6 +13,8 @@ The Jarvis environment and its tools run on the user's PC through `jarvis-launch
 
 Ask the user whether to create a **new folder** or to use an existing **empty folder**: one folder per demo. In Cowork the folder must be **connected** (ask the user to grant access to it); in the Codex app it is the local project folder (a cloud task cannot reach the PC). A folder that holds other files is not a working folder: ask for another one.
 
+Never the user's **home folder** itself, the disk root, or Desktop, Documents, Downloads, OneDrive: the launcher refuses these protected folders. Suggest a new sub-folder instead, for example `<home>/jarvis/<demo name>`.
+
 ## 2. Direct or bridge
 
 Decide once, at the start, from what you have:
@@ -59,6 +61,7 @@ If the user reports a problem:
 | `'npx' is not recognized…` / `command not found` | Node.js is missing: install Node.js 20 LTS or later from nodejs.org, open a new terminal, then step 3 again. If they run the launcher from a copy of its source: `node <launcher folder>\dist\cli.js bridge`. |
 | `docker` errors, "Docker engine not reachable" | Start Docker Desktop and wait until it is running, then step 3 again. |
 | "holds other files" | The folder is not empty: choose another folder (step 1). |
+| "cannot be a Jarvis environment folder" | It is a protected folder (the home folder, the disk root, Desktop, Documents…): create a new sub-folder for the demo, connect it, and start the bridge there (step 1). |
 | "A bridge is already running" | It is already running in another window: nothing to do. |
 | No *Open in Terminal* in the menu | Open any terminal, `cd "<full path of the folder>"`, then `npx jarvis-launcher bridge`. On macOS: right-click the folder → Services → New Terminal at Folder. |
 
@@ -77,7 +80,7 @@ When the user says it is running, run `node .jarvis/bridge/jl.mjs status` again:
 
 ## 4. Hand over to the workflow guide
 
-1. `status` (`jarvis-launcher status --json`, or `node .jarvis/bridge/jl.mjs status`): `folderKind` `empty` → you will create the environment with `start`; `scenario` → resume it; `not-a-scenario` → stop and ask for another folder.
+1. `status` (`jarvis-launcher status --json`, or `node .jarvis/bridge/jl.mjs status`): `folderKind` `empty` → you will create the environment with `start`; `scenario` → resume it; `not-a-scenario` → stop, tell the user why (`folderProblem`: a protected folder such as the home folder, or other files) and ask for another folder. Never use `--any-folder` on your own.
 2. **Jarvis version.** The scenarios, guides and skills are built for the Jarvis version in `minJarvisVersion` (in `status`) or later. If `jarvisVersionSupported` is `false`, tell the user that this environment runs an older Jarvis on which the guides and skills may not work, and ask to update it: `update --tag latest` keeps the data (through the bridge it needs the user's yes, then `--confirm`). The Scenario Library refuses its items on an older Jarvis: if the user does not want to update, suggest a new environment in an empty folder instead. A new environment (`start` in an empty folder) gets the latest version and needs nothing.
 3. When you point the user to Jarvis, always give the automatic-login link `urls.devLoginAdmin` from `status` (the plain web address only shows a login page).
 4. Read the guide and follow it from its rules on: `library show agent-workflow` (in bridge mode `node .jarvis/bridge/jl.mjs library show agent-workflow`). Before proposing the model, read `library show scenario-design` too.

@@ -1,6 +1,6 @@
 {
   "name": "jarvis-launcher",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Start or resume a Jarvis scenario with jarvis-launcher: pick the working folder, reach the launcher on the PC (directly or through its bridge), then follow the agent workflow of the Scenario Library.",
   "author": {
     "name": "Nebula Team"
