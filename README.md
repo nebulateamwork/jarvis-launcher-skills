@@ -20,4 +20,4 @@ The plugin **jarvis-launcher** is the repository itself (`.claude-plugin/plugin.
 
 | Skill | Version | What it does |
 |---|---|---|
-| `jarvis-launcher-scenario-start` | 1.1.2 | Start a Jarvis scenario |
+| `jarvis-launcher-scenario-start` | 1.2.0 | Start a Jarvis scenario |
